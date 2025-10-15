@@ -7,7 +7,7 @@ function UUGameEmbed() {
     <iframe
       src={gameUrl}
       title="Ditt Pygame-spel"
-      style={{ border: 'none', width: '960', height: '600' }}
+      style={{ border: 'none', width: '57vw', height: '86vh' }}
     />
   );
 }
