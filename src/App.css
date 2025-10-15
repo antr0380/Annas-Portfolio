@@ -1,0 +1,75 @@
+body {
+  margin: 0; 
+  padding: 0; 
+  width: 100vw; /* 100% av viewportens bredd */
+  height: 100vh; /* 100% av viewportens höjd */
+  overflow: hidden; 
+  pointer-events: none;
+}
+
+h1 {
+  /*padding-top: 100px; /* Justera värdet för att flytta texten */
+  font-family: 'Maesto', serif;
+  font-weight: normal;
+  color: black;
+  caret-color: transparent;
+  padding: 3px; /* Lägg till lite utfyllnad så texten inte ligger precis vid bildens kant */
+  pointer-events:none;
+  font-size: 3rem;
+  margin-top: 50px;
+}
+
+.text{
+  font-family: 'Grotesque';
+  caret-color: transparent;
+  pointer-events: none;
+  line-height: 1.5;
+  font-size: 1.2em;
+}
+
+.bold-text{
+  font-weight: bold;
+}
+
+.credits{
+  color: white;
+  padding: 3px;
+  position: absolute;
+  bottom: 20px;      /* avstånd från nederkanten */
+  left: 6.5%;         
+  transform: translateX(-50%); /* korrigerar för elementets bredd */
+  font-size: 0.95em;
+}
+
+.title-container {
+  background-image: url('assets/title_background.png');
+  background-size: contain; /* Gör att bilden skalar ner utan att klippas */
+  background-repeat: no-repeat;
+  background-position: center; /* Centrera bilden i containern */
+  caret-color: transparent;
+  height: 60px;
+  text-align:center;
+  pointer-events: none;
+}
+
+.parent-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+@font-face {
+  font-family: 'Maesto'; /* Välj ett namn för ditt typsnitt */
+  src: url('assets/Maesto-Regular_demo.otf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Grotesque'; 
+  src: url('assets/terminal-grotesque.grotesque-regular.ttf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}

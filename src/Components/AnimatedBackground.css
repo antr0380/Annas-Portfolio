@@ -1,0 +1,205 @@
+:root {
+  /* Här definieras dina globala variabler */
+  --scale: 0.75;
+  --grass-width: calc(var(--scale) * 128px);
+  --grass-height: calc(var(--scale) * 64px); 
+  --sheep-width: calc(var(--scale) * 128px);
+}
+
+/* Grundläggande stil för containern */
+.animated-background-container {
+  position: fixed;
+  top: calc(var(--grass-height) * -1);
+  left: 0;
+  width: 100%;
+  height: 120%;
+  overflow: hidden; /* Dölj allt som är utanför containern */
+  z-index: -1;
+}
+
+.layer-ground {
+  background-image: url('../assets/grass3.png');
+  animation: moveGround 10s linear infinite; 
+  background-size: var(--grass-width) var(--grass-height);
+  background-repeat: repeat;
+  position: absolute; /* Gör att lagren kan ligga ovanpå varandra */
+  width: 150%; /* Gör lagret bredare för att det ska kunna röra sig utan att lämna tomma ytor */
+  height: 150%; /* Samma här */
+  will-change: transform; /* Optimerar animationen för prestanda */
+  caret-color: transparent;
+}
+
+.sheep {
+  /* Gör fåret till ett fristående lager */
+  position: absolute; 
+  transform: scale(var(--scale, 1));
+  animation: moveGroundObjects 250s linear infinite; /* behöver vara 20 gånger så stort som bakgrundshastigheten */
+  animation-iteration-count: 1; 
+  animation-fill-mode: forwards;
+  /* Välj startposition (exempel) */
+  top: var(--sheep-top, -3vh); /* Fallback till 50vh om variabeln inte finns */
+  left: var(--sheep-left, 50vw);
+  caret-color: transparent;
+  pointer-events: auto;
+  z-index: 10; 
+}
+
+.sheep-container:hover {
+  cursor: url('../assets/custom_cursor_resized.png'), auto;
+}
+
+.sheep-container {
+  /* 1. Definiera storleken för EN ENDA BILDRUTA */
+  width: var(--sheep-width);
+  height: var(--sheep-width); 
+  background-repeat: no-repeat; 
+}
+
+.speech-bubble{
+  background-image: '../assets/shamrock_speech_bubble';
+  width: 62px;
+  height: 50px;
+  z-index: 15;
+}
+
+.idle{
+  background-image: url('../assets/Sheep_Idle.png');
+    /* 3. BESTÄM HUR STOR SPRITESHEETET ÄR INUTI containern, med skala */
+  background-size: calc(6 * var(--sheep-width)) auto;
+  /* Förklaring:
+     - 6 * var(--sheep-width): Den totala bredden av spritesheetet (768px).
+     - * var(--inner-sheep-scale, 1): Använd en separat skala för bakgrunden.
+     - auto: Höjden skalas proportionerligt. */
+
+  animation: idleSheepAnimation 1s steps(5) infinite; /* Använd 'steps' */
+}
+
+.grazing{
+  background-image: url('../assets/Sheep_Grass.png');
+  background-size: calc(12 * var(--sheep-width)) auto;
+  animation: grazingSheepAnimation 4s steps(11) infinite; /* Använd 'steps' */
+}
+
+.moving{
+  background-image: url('../assets/Sheep_Move.png');
+  background-size: calc(4 * var(--sheep-width)) auto;
+  animation: movingSheepAnimation 0.5s steps(3) infinite; /* Använd 'steps' */
+}
+
+/* Klass för spegelvända får */
+.flipped {
+    transform: scaleX(-1);
+}
+
+.cloud{
+  position: absolute; 
+  transform: scale(var(--scale, 1));
+  animation: moveClouds 250s linear infinite; /* behöver vara 20 gånger så stort som bakgrundshastigheten */
+  animation-iteration-count: 1; 
+  animation-fill-mode: forwards;
+  top: var(--cloud-top, -20vh); 
+  left: var(--cloud-left, 50vw);
+  z-index: var(--z-value); 
+  caret-color: transparent;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.cloud-small{
+  width: 166px;
+  height: 134px; 
+  background-image: url('../assets/small_cloud.png');
+  animation: moveClouds 400s linear infinite;
+}
+
+.cloud-medium{
+  width: 210px;
+  height: 160px; 
+  background-image: url('../assets/medium_cloud.png');
+  animation: moveClouds 400s linear infinite;
+}
+
+.cloud-big{
+  width: 377px;
+  height: 186px; 
+  background-image: url('../assets/big_cloud.png');
+  animation: moveClouds 400s linear infinite;
+}
+
+/* Lägg till denna i din CSS-fil */
+.pause-animations .sheep,
+.pause-animations .cloud,
+.pause-animations .sheep-container,
+.pause-animations .sheep-image,
+.pause-animations .animated-background-container,
+.pause-animations .layer-ground {
+/* Detta fryser alla Keyframe-animationer */
+  animation-play-state: paused !important;
+}
+
+@keyframes moveGround {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(calc(var(--grass-width) * -1), var(--grass-height));
+  }
+}
+
+@keyframes moveClouds {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(calc(var(--grass-width) * -25), calc(var(--grass-height) * 25));
+  }
+}
+
+@keyframes moveGroundObjects {
+  0% {
+    /* Start utanför höger kant (eller din spawn-zon) */
+    transform: translate(0, 0); 
+  }
+  100% {
+    /* Slut utanför vänster kant */
+    transform: translate(calc(var(--grass-width) * -25), calc(var(--grass-height) * 25)); 
+  }
+}
+
+@keyframes idleSheepAnimation {
+  /* Börja på första bilden */
+  0% {
+    background-position: 0 0;
+  }
+  /* Sluta på sista bilden */
+  100% {
+    /* (Antal rutor - 1) * Rutebredd = (6 - 1) * 128px = 640px */
+    background-position: calc(var(--sheep-width) * -5) 0;
+  }
+}
+
+@keyframes grazingSheepAnimation {
+  /* Börja på första bilden */
+  0% {
+    background-position: 0 0;
+  }
+  /* Sluta på sista bilden */
+  100% {
+    /* (Antal rutor - 1) * Rutebredd = (6 - 1) * 128px = 640px */
+    background-position: calc(var(--sheep-width) * -11) 0;
+  }
+}
+
+@keyframes movingSheepAnimation {
+  /* Börja på första bilden */
+  0% {
+    background-position: 0 0;
+  }
+  /* Sluta på sista bilden */
+  100% {
+    /* (Antal rutor - 1) * Rutebredd = (6 - 1) * 128px = 640px */
+    background-position: calc(var(--sheep-width) * -3) 0;
+  }
+}
+
+

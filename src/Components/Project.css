@@ -1,0 +1,199 @@
+.content-container {
+  background-color:rgba(252, 252, 250, 1); /*0.731 om vill ha transparent*/
+  height: 90vh;
+  width: 70vw;
+  margin-top: 18px;
+  pointer-events: auto;
+  caret-color: transparent;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.two-section-container-horizontal {
+  display: flex;          /* sätter upp flexbox */
+  flex-direction: row;    /* standard, horisontell layout */
+  gap: 30px;              /* avstånd mellan sektionerna */
+  width: 100%;            /* fyller hela föräldern */
+  height: 100%;
+  justify-content: space-evenly;
+}
+
+.two-section-container-vertical {
+  display: flex;          /* sätter upp flexbox */
+  flex-direction: column;    /* standard, horisontell layout */
+  gap: 0px;              /* avstånd mellan sektionerna */
+  width: 100%;            /* fyller hela föräldern */
+  height: 95%;
+  align-items: center;
+}
+
+.section-text {
+  flex: 1;                
+  padding: 20px;
+}
+
+.section-images {
+  flex: 1;                
+  padding: 20px;
+}
+
+.section-sheep-text{
+  flex: 2;
+  padding: 20px;
+  padding-left: 40px;
+}
+
+.section-sheep-images{
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-billiards-text {
+  flex: 2;                
+  padding: 20px;
+}
+
+.section-billiards-video{
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-element{
+  flex:1;
+}
+
+.header {
+  font-family: 'Maesto', serif;
+  font-weight: normal;
+  color: black;
+  caret-color: transparent;
+  padding-top:20px;
+  pointer-events:none;
+  font-size: 2rem;
+}
+
+.header-youtube{
+  padding: 0;
+}
+
+.youtube-img{
+  width: auto;
+  height: 60vh;
+  object-fit: contain;
+}
+
+.youtube-popup-img{
+  width: auto;
+  height: 60vh;
+  object-fit: contain;
+}
+
+.uu-game-img{
+  width: 30vw;
+  height: auto;
+  border-radius: 8px;
+}
+
+.flappy-img{
+  width: 25vw;
+  height: auto;
+  margin-bottom: 10px;
+  margin-left: 40px;
+  border-radius: 8px;
+}
+
+.uu-game-section{
+  flex: 1;                
+  padding: 20px;
+  justify-content: center;
+  display: flex;
+}
+
+.sheep-img{
+  image-rendering: pixelated;  /* behåller hårda pixlar vid förstoring */
+  image-rendering: crisp-edges; /* fallback för vissa webbläsare */
+  height: auto;
+  width: 10vw;
+  /*padding-top: 20vh;*/
+}
+
+.billiards-video{
+  width: auto;
+  height: 70vh;
+}
+
+.divider {
+  width: 2px;               /* tjocklek på linjen */
+  background-color: #ccc;   /* färg */
+  margin: 0 20px;           /* lite mellanrum mellan sektioner */
+  height: 70%;
+}
+
+.scroll-container {
+  flex: 1;                     /* fyller ut all ledig höjd */
+  overflow-y: auto;            /* gör bara den här scrollbar */
+  padding: 20px;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 4px;
+}
+
+.link{
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.link-pink{
+  color: #E34F74; 
+}
+
+.link:hover {
+  text-decoration: underline; /* understryk vid hover */
+}
+
+.button{
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: 'Grotesque';
+}
+
+.button-load {
+  border-radius: 8px;
+  width: 57vw;
+  height: 86vh;
+}
+
+.button:hover {
+  background: #555;
+}
+
+.button-unload {
+  font-size: 0.7rem;
+  width: 5vw;
+  height: 3vh;
+}
+
+.button-load-flappy{
+  border-radius: 8px;
+  width: 960px;
+  height: 600px;
+}
